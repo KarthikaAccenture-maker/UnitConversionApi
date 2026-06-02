@@ -2,8 +2,7 @@
 {
     public static class UnitCatalog
     {
-        public static readonly Dictionary<string, string> Units =
-        new(StringComparer.OrdinalIgnoreCase)
+        public static readonly Dictionary<string, string> Units = new(StringComparer.OrdinalIgnoreCase)
         {
             { "meter", "Length" },
             { "foot", "Length" },

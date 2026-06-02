@@ -50,3 +50,4 @@ dotnet test
 - Swagger for testing
 - Service-based conversion logic
 - Easily extensible for future unit types
+- Validation logic to ensure the inputs are valid and supported
