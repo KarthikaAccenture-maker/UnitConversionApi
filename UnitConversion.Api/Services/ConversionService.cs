@@ -1,4 +1,6 @@
-﻿namespace UnitConversion.Api.Services
+﻿using UnitConversion.Api.Constants;
+
+namespace UnitConversion.Api.Services
 {
     public class ConversionService
     {
@@ -6,6 +8,7 @@
         {
             fromUnit = fromUnit.ToLower();
             toUnit = toUnit.ToLower();
+            ValidateUnits(fromUnit, toUnit);
 
             // Length calculation
             if (fromUnit == "meter" && toUnit == "foot")
@@ -29,6 +32,19 @@
                 return (value - 32) * 5 / 9;
 
             throw new Exception("Please check your input value");
+        }
+
+        public void ValidateUnits(string fromUnit, string toUnit)
+        {
+            if (!UnitCatalog.Units.ContainsKey(fromUnit))
+            {
+                throw new ArgumentException($"Invalid source unit '{fromUnit}'.");
+            }
+
+            if (!UnitCatalog.Units.ContainsKey(toUnit))
+            {
+                throw new ArgumentException($"Invalid target unit '{toUnit}'.");
+            }
         }
     }
 }
