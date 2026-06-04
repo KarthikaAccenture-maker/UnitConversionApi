@@ -8,7 +8,7 @@ namespace UnitConversion.Api.Services
     {
         public ConversionResponse Convert(ConversionRequest request)
         {
-            double convertedValue = Convert(request.Value, request.FromUnit, request.ToUnit);
+            double convertedValue = Convertion(request.Value, request.FromUnit, request.ToUnit);
             return new ConversionResponse
             {
                 OriginalValue = request.Value,
@@ -17,7 +17,7 @@ namespace UnitConversion.Api.Services
                 ConvertedResultValue = convertedValue
             };
         }
-        public double Convert(double value, string fromUnit, string toUnit)
+        public double Convertion(double value, string fromUnit, string toUnit)
         {
             fromUnit = fromUnit.ToLower();
             toUnit = toUnit.ToLower();
