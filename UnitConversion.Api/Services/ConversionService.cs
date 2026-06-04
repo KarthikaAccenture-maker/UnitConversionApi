@@ -1,9 +1,22 @@
 ﻿using UnitConversion.Api.Constants;
+using UnitConversion.Api.Models;
+using UnitConversion.Api.Services.Interfaces;
 
 namespace UnitConversion.Api.Services
 {
-    public class ConversionService
+    public class ConversionService : IConversionService
     {
+        public ConversionResponse Convert(ConversionRequest request)
+        {
+            double convertedValue = Convert(request.Value, request.FromUnit, request.ToUnit);
+            return new ConversionResponse
+            {
+                OriginalValue = request.Value,
+                FromUnit = request.FromUnit,
+                ToUnit = request.ToUnit,
+                ConvertedResultValue = convertedValue
+            };
+        }
         public double Convert(double value, string fromUnit, string toUnit)
         {
             fromUnit = fromUnit.ToLower();
@@ -34,7 +47,7 @@ namespace UnitConversion.Api.Services
             throw new Exception("Please check your input value");
         }
 
-        public void ValidateUnits(string fromUnit, string toUnit)
+        private void ValidateUnits(string fromUnit, string toUnit)
         {
             if (!UnitCatalog.Units.ContainsKey(fromUnit))
             {
